@@ -25,5 +25,5 @@ public:
 	size_t get_size() { return size; }
 	unsigned char operator[](int index);
 
-	static short byte_to_2byte(unsigned char upper, unsigned char lower);
+	short byte_to_2byte(int index);
 };

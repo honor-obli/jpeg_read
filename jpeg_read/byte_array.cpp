@@ -48,9 +48,11 @@ unsigned char byte_array::operator[](int index) {
 	return data[index];
 }
 
-short byte_array::byte_to_2byte(unsigned char upper, unsigned char lower) {
-	short r = upper;
+short byte_array::byte_to_2byte(int index) {
+	short r = data[index];
 	r <<= 8;
-	r += lower;
+	if (index < size) {
+		r += data[index + 1];
+	}
 	return r;
 }
