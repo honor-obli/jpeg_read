@@ -37,12 +37,21 @@ public:
 };
 
 class DQT : segment {
+	enum offset{
+		MARKER = 0,
+		LENGTH = 2,
+		ACCURACY = 4,
+		QUALITY_FACT = 5
+	};
 	short length;
-	unsigned char identifier;
-	unsigned char table[64];
+	unsigned char accuracy;
+	union {
+		unsigned char byte;
+		unsigned short word;
+	}table[64];
 public:
-	void print_segment() {}
-	void copied_from_byte_array(byte_array bytes, int begin) {}
+	void print_segment();
+	void copied_from_byte_array(byte_array bytes, int begin);
 };
 
 class SOF0 : segment {

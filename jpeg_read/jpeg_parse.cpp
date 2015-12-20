@@ -16,8 +16,12 @@ void jpeg_parse::parse(byte_array bytes) {
 				app0.print_segment();
 			}
 				break;
-			case DQT:
-				printf("DQT  : %dbytes length:%d\n", i+1, bytes.byte_to_2byte(i + 2));
+			case DQT: {
+				printf("DQT  : %dbytes length:%d\n", i + 1, bytes.byte_to_2byte(i + 2));
+				segment::DQT dqt;
+				dqt.copied_from_byte_array(bytes, i);
+				dqt.print_segment();
+			}
 				break;
 			case SOF0:
 				printf("SOF0 : %dbytes length:%d\n", i+1, bytes.byte_to_2byte(i + 2));

@@ -26,3 +26,30 @@ void APP0::copied_from_byte_array(byte_array bytes, int begin) {
 	width_thumbnail = bytes[begin + WIDTH_THUMB];
 	height_thumbnail = bytes[begin + HEIGHT_THUMB];
 }
+
+void DQT::copied_from_byte_array(byte_array bytes, int begin) {
+	length = bytes[begin + LENGTH];
+	accuracy = bytes[begin+ ACCURACY];
+	for (int i = 0; i < 64; i++) {
+		if (accuracy == 0) {
+			table[i].byte = bytes[begin + QUALITY_FACT + i];
+		}
+		else {
+			table[i].word = bytes[begin + QUALITY_FACT + i];
+		}
+		
+	}
+}
+
+void DQT::print_segment() {
+	cout << "DQT length:" << length << endl;
+	for (int i = 0; i < 64; i++) {
+		if (accuracy == 0) {
+			printf("%3d", table[i].byte);
+		}
+		else {
+			printf("%3d", table[i].word);
+		}
+		if (i % 8 == 7) cout << endl;
+	}
+}
