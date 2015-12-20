@@ -6,8 +6,9 @@ class byte_array {
 	size_t size;
 
 	void data_initialize();
+	void read_file(const char* file_name);
 public:
-	byte_array() : data(nullptr), size(0) {}
+	byte_array(const char* file_name);
 	~byte_array() { delete[] data; }
 	byte_array(const byte_array& d) {
 		size = d.size;
@@ -15,7 +16,6 @@ public:
 		memcpy(data, d.data, size);
 	}
 
-	void read_file(const char* file_name);
 	void print_hex();
 	bool is_readed() {
 		return data != nullptr;

@@ -15,6 +15,10 @@ unsigned int get_size_from_eof_and_begin(ifstream& ifs) {
 	return size;
 }
 
+byte_array::byte_array(const char* file_name) : data(nullptr), size(0) {
+	read_file(file_name);
+}
+
 void byte_array::read_file(const char* file_name) {
 	ifstream ifs(file_name, ios::in | ios::binary);
 	if (!ifs) {
@@ -38,7 +42,6 @@ void byte_array::print_hex() {
 
 void byte_array::data_initialize() {
 	if (data != nullptr) {
-		delete[] data;
 	}
 	data = new unsigned char[size];
 	memset(data, 0, size);

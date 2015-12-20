@@ -7,15 +7,8 @@
 #include "segment.h"
 using namespace std;
 
-
-
-
-
-
-
 int main() {
-	byte_array data;
-	data.read_file("test.jpg");
+	byte_array data("test.jpg");
 
 	jpeg_parse parser;
 	parser.parse(data);

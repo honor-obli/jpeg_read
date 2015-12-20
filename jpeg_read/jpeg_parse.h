@@ -14,5 +14,4 @@ enum marker {
 class jpeg_parse {
 public:
 	void parse(byte_array bytes);
-	//short byte_to_2byte(unsigned char upper, unsigned char lower);
 };
