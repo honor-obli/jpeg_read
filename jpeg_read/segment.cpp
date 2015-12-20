@@ -28,7 +28,7 @@ void APP0::copied_from_byte_array(byte_array bytes, int begin) {
 }
 
 void DQT::copied_from_byte_array(byte_array bytes, int begin) {
-	length = bytes[begin + LENGTH];
+	length = bytes.byte_to_2byte(begin + LENGTH);
 	accuracy = bytes[begin+ ACCURACY];
 	for (int i = 0; i < 64; i++) {
 		if (accuracy == 0) {
@@ -52,4 +52,20 @@ void DQT::print_segment() {
 		}
 		if (i % 8 == 7) cout << endl;
 	}
+}
+
+void SOF0::copied_from_byte_array(byte_array bytes, int begin) {
+	length = bytes.byte_to_2byte(begin + LENGTH);
+	accuracy = bytes[begin + ACCURACY];
+	height = bytes.byte_to_2byte(begin + ROW);
+	width = bytes.byte_to_2byte(begin + COL);
+	elements_number = bytes[begin + ELEMENT_NUM];
+}
+
+void SOF0::print_segment() {
+	cout << "SOF0 length:" << length << endl;
+	cout << "SOF0 accuracy:" << (int)accuracy << endl;
+	cout << "SOF0 height:" << height << endl;
+	cout << "SOF0 width:" << width << endl;
+	cout << "SOF0 ele_num:" << (int)elements_number << endl;
 }

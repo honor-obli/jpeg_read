@@ -10,21 +10,22 @@ void jpeg_parse::parse(byte_array bytes) {
 			case SOI:
 				break;
 			case APP0: {
-				printf("APP0 : %dbytes length:%d\n", i + 1, bytes.byte_to_2byte(i+2));
 				segment::APP0 app0;
 				app0.copied_from_byte_array(bytes, i);
 				app0.print_segment();
 			}
 				break;
 			case DQT: {
-				printf("DQT  : %dbytes length:%d\n", i + 1, bytes.byte_to_2byte(i + 2));
 				segment::DQT dqt;
 				dqt.copied_from_byte_array(bytes, i);
 				dqt.print_segment();
 			}
 				break;
-			case SOF0:
-				printf("SOF0 : %dbytes length:%d\n", i+1, bytes.byte_to_2byte(i + 2));
+			case SOF0: {
+				segment::SOF0 sof0;
+				sof0.copied_from_byte_array(bytes, i);
+				sof0.print_segment();
+			}
 				break;
 			case DHT:
 				printf("DHT  : %dbytes length:%d\n", i+1, bytes.byte_to_2byte(i + 2));

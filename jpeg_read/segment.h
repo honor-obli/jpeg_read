@@ -2,7 +2,8 @@
 
 #include "byte_array.h"
 
-namespace segment{
+
+namespace segment {
 class segment {
 public:
 	virtual void print_segment()=0;
@@ -55,11 +56,25 @@ public:
 };
 
 class SOF0 : segment {
+	enum offset {
+		MARKER = 0,
+		LENGTH = 2,
+		ACCURACY = 4,
+		ROW = 5,
+		COL = 7,
+		ELEMENT_NUM = 9
+	};
 	short length;
 	unsigned char accuracy;
 	short height;
 	short width;
 	unsigned char elements_number;
+public:
+	void print_segment();
+	void copied_from_byte_array(byte_array bytes, int begin);
+};
+
+class DHT : segment {
 public:
 	void print_segment() {}
 	void copied_from_byte_array(byte_array bytes, int begin) {}
