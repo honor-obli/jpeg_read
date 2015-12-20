@@ -41,8 +41,6 @@ void byte_array::print_hex() {
 }
 
 void byte_array::data_initialize() {
-	if (data != nullptr) {
-	}
 	data = new unsigned char[size];
 	memset(data, 0, size);
 }
